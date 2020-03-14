@@ -1858,9 +1858,9 @@ class MusicBot(discord.Client):
             progress_bar_length = 30
             for i in range(progress_bar_length):
                 if (percentage < 1 / progress_bar_length * i):
-                    prog_bar_str += 'â–¡'
+                    prog_bar_str += '??
                 else:
-                    prog_bar_str += 'â– '
+                    prog_bar_str += '??
 
             action_text = self.str.get('cmd-np-action-streaming', 'Streaming') if streaming else self.str.get('cmd-np-action-playing', 'Playing')
 
@@ -1895,13 +1895,13 @@ class MusicBot(discord.Client):
     async def cmd_summon(self, channel, guild, author, voice_channel):
         """
         Usage:
-            {command_prefix}summon
+            {command_prefix}join
 
         Call the bot to the summoner's voice channel.
         """
 
         if not author.voice:
-            raise exceptions.CommandError(self.str.get('cmd-summon-novc', 'You are not connected to voice. Try joining a voice channel!'))
+            raise exceptions.CommandError(self.str.get('cmd-summon-novc', 'À½¼º Ã¤³Î¿¡ ¿¬°áµÇÁö ¾Ê¾Ò½À´Ï´Ù. À½¼ºÃ¤³Î¿¡ Âü°¡ÇÑ ÈÄ ´Ù½Ã ½ÃµµÇÏ½Ê½Ã¿À.'))
 
         voice_client = self.voice_client_in(guild)
         if voice_client and guild == author.voice.channel.guild:
@@ -1918,7 +1918,7 @@ class MusicBot(discord.Client):
                 )
 
             elif not chperms.speak:
-                log.warning("Cannot join channel '{0}', no permission to speak.".format(author.voice.channel.name))
+                log.warning("±ÇÇÑÀÌ ¾ø½À´Ï´Ù.'{0}'".format(author.voice.channel.name))
                 raise exceptions.CommandError(
                     self.str.get('cmd-summon-noperms-speak', "Cannot join channel `{0}`, no permission to speak.").format(author.voice.channel.name),
                     expire_in=25
@@ -2526,7 +2526,7 @@ class MusicBot(discord.Client):
     async def cmd_disconnect(self, guild):
         """
         Usage:
-            {command_prefix}disconnect
+            {command_prefix}leave
         
         Forces the bot leave the current voice channel.
         """
